@@ -9,8 +9,10 @@ export const getCharacters = async (page = 1) => {
   return response.data
 }
 
-export const getCharacterDetails = async (id: string) => {
-  const response = await api.get(`/people/${id}/`)
+export const getCharacterDetails = async (url: string) => {
+  // Remove the base URL from the character's full URL
+  const characterPath = url.replace('https://swapi.dev/api', '')
+  const response = await api.get(characterPath)
   return response.data
 }
 
