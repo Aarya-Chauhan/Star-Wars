@@ -1,11 +1,12 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Box, Heading, Text, VStack, Spinner } from '@chakra-ui/react'
-import { getCharacterDetails } from '../../../services/api'
+import { Box, Heading, Text, VStack, Spinner, Image, Center } from '@chakra-ui/react'
+import { getCharacterDetails, getCharacterImage } from '../../../services/api'
 
 export default function CharacterDetail({ params }: { params: { id: string } }) {
   const [character, setCharacter] = useState<any>(null)
+  const [imageUrl, setImageUrl] = useState('')
 
   useEffect(() => {
     if (params.id) {
@@ -16,16 +17,23 @@ export default function CharacterDetail({ params }: { params: { id: string } }) 
   const fetchCharacterDetails = async () => {
     const data = await getCharacterDetails(params.id)
     setCharacter(data)
+    const image = await getCharacterImage(data.name)
+    setImageUrl(image || '../../../../public/starry-night.jpeg')
   }
 
   if (!character) {
-    return <Spinner />
+    return (
+      <Center h="100vh">
+        <Spinner size="xl" />
+      </Center>
+    )
   }
 
   return (
-    <Box p={8}>
-      <Heading mb={6}>{character.name}</Heading>
-      <VStack align="start" spacing={4}>
+    <VStack p={8} spacing={6} align="center">
+      <Image src={imageUrl} alt={character.name} boxSize="300px" objectFit="cover" />
+      <Heading>{character.name}</Heading>
+      <VStack align="center" spacing={4}>
         <Text><strong>Height:</strong> {character.height}</Text>
         <Text><strong>Mass:</strong> {character.mass}</Text>
         <Text><strong>Hair Color:</strong> {character.hair_color}</Text>
@@ -34,12 +42,12 @@ export default function CharacterDetail({ params }: { params: { id: string } }) 
         <Text><strong>Birth Year:</strong> {character.birth_year}</Text>
         <Text><strong>Gender:</strong> {character.gender}</Text>
       </VStack>
-      <Heading size="md" mt={8} mb={4}>Movies</Heading>
-      <VStack align="start">
+      <Heading size="md">Movies</Heading>
+      <VStack align="center">
         {character.films.map((film: string) => (
           <Text key={film}>{film.split('/').filter(Boolean).pop()}</Text>
         ))}
       </VStack>
-    </Box>
+    </VStack>
   )
 }

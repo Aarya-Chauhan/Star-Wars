@@ -1,8 +1,8 @@
-'use client'
-
-import { Box, Text, Button } from '@chakra-ui/react'
+import { Box, Text, Button, Image, VStack, Icon, HStack, Spinner, Center } from '@chakra-ui/react'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { getCharacterImage } from '../services/api'
+import { FaHeart, FaRegHeart } from 'react-icons/fa'
 
 interface CharacterCardProps {
   name: string
@@ -11,12 +11,22 @@ interface CharacterCardProps {
 
 const CharacterCard: React.FC<CharacterCardProps> = ({ name, url }) => {
   const [isFavorite, setIsFavorite] = useState(false)
-  const id = url.split('/').filter(Boolean).pop()
+  const [imageUrl, setImageUrl] = useState('')
+  const [isLoading, setIsLoading] = useState(true)
+  const id = url.split('/').filter(Boolean).pop() || ''
 
   useEffect(() => {
     const favorites = JSON.parse(localStorage.getItem('favorites') || '[]')
     setIsFavorite(favorites.includes(id))
-  }, [id])
+
+    const fetchImage = async () => {
+      setIsLoading(true)
+      const image = await getCharacterImage(name)
+      setImageUrl(image || '/placeholder.jpg')
+      setIsLoading(false)
+    }
+    fetchImage()
+  }, [id, name])
 
   const toggleFavorite = () => {
     const favorites = JSON.parse(localStorage.getItem('favorites') || '[]')
@@ -31,14 +41,60 @@ const CharacterCard: React.FC<CharacterCardProps> = ({ name, url }) => {
   }
 
   return (
-    <Box borderWidth="1px" borderRadius="lg" p={4} m={2}>
-      <Text fontSize="xl" fontWeight="bold">{name}</Text>
-      <Link href={`/character/${id}`}>
-        <Button colorScheme="blue" mr={2}>View Details</Button>
-      </Link>
-      <Button onClick={toggleFavorite} colorScheme={isFavorite ? "yellow" : "gray"}>
-        {isFavorite ? "Unfavorite" : "Favorite"}
-      </Button>
+    <Box 
+      borderWidth="1px" 
+      borderRadius="lg" 
+      overflow="hidden" 
+      boxShadow="md" 
+      width="100%" 
+      maxWidth="300px"
+      height="400px"
+      paddingTop={5}
+      display="flex"
+      flexDirection="column"
+      transition="transform 0.3s"
+      _hover={{ transform: 'scale(1.05)' }}
+      bg="rgba(0, 0, 0, 0.7)"
+    >
+      <Box height="250px" width="100%" position="relative">
+        {isLoading ? (
+          <Center height="100%">
+            <Spinner
+              thickness="4px"
+              speed="0.65s"
+              emptyColor="gray.200"
+              color="blue.500"
+              size="xl"
+            />
+          </Center>
+        ) : (
+          <Image 
+            src={imageUrl} 
+            alt={name} 
+            objectFit="contain"
+            fallbackSrc="/placeholder.jpg"
+            width="100%"
+            height="100%"
+          />
+        )}
+      </Box>
+      <VStack spacing={4} p={4} flex={1} justifyContent="space-between">
+        <Text fontSize="xl" fontWeight="bold" textAlign="center" noOfLines={2} color="white">{name}</Text>
+        <HStack width="100%" spacing={7} justifyContent="space-between">
+          <Link href={`/character/${id}`} style={{ flexGrow: 1 }}>
+            <Button colorScheme="blue" width="100%">View Details</Button>
+          </Link>
+          <Icon
+            as={isFavorite ? FaHeart : FaRegHeart}
+            color={isFavorite ? "red.500" : "gray.400"}
+            boxSize={9}
+            cursor="pointer"
+            onClick={toggleFavorite}
+            transition="all 0.2s"
+            _hover={{ transform: 'scale(1.1)' }}
+          />
+        </HStack>
+      </VStack>
     </Box>
   )
 }
