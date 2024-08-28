@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation'
 import { Providers } from '../components/Providers'
 import { AppContainer } from '../components/AppContainer'
 import Preloader from '../components/Preloader'
+import Head from 'next/head'
 
 export default function RootLayout({
   children,
@@ -16,10 +17,8 @@ export default function RootLayout({
   const router = useRouter()
 
   useEffect(() => {
-    // Simulate initial loading time (you can remove this in production)
     const timer = setTimeout(() => setLoading(false), 3000)
 
-    // Handle route change events
     const handleStart = () => setLoading(true)
     const handleComplete = () => setLoading(false)
 
@@ -37,6 +36,9 @@ export default function RootLayout({
 
   return (
     <html lang="en">
+      <head>
+        <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet" />
+      </head>
       <body>
         <Providers>
           {loading ? (

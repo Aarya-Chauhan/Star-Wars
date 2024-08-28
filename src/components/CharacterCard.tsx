@@ -22,7 +22,7 @@ const CharacterCard: React.FC<CharacterCardProps> = ({ name, url }) => {
     const fetchImage = async () => {
       setIsLoading(true)
       const image = await getCharacterImage(name)
-      setImageUrl(image || '/placeholder.jpg')
+      setImageUrl(image)
       setIsLoading(false)
     }
     fetchImage()
@@ -72,7 +72,6 @@ const CharacterCard: React.FC<CharacterCardProps> = ({ name, url }) => {
             src={imageUrl} 
             alt={name} 
             objectFit="contain"
-            fallbackSrc="/placeholder.jpg"
             width="100%"
             height="100%"
           />

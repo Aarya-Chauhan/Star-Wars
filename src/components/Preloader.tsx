@@ -12,7 +12,7 @@ const Preloader = () => {
       zIndex={9999}
     >
       <Center height="100vh">
-        <Image src='./star-wars.gif' alt="Star Wars Logo" />
+        <Image src="/starwars.gif" alt="Star Wars Logo" />
       </Center>
     </Box>
   );

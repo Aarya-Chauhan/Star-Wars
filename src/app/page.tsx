@@ -9,9 +9,12 @@ export default function Home() {
   const [characters, setCharacters] = useState([])
   const [page, setPage] = useState(1)
   const [totalPages, setTotalPages] = useState(0)
+  const [favorites, setFavorites] = useState<string[]>([])
 
   useEffect(() => {
     fetchCharacters()
+    const storedFavorites = JSON.parse(localStorage.getItem('favorites') || '[]')
+    setFavorites(storedFavorites)
   }, [page])
 
   const fetchCharacters = async () => {
@@ -20,16 +23,34 @@ export default function Home() {
     setTotalPages(Math.ceil(data.count / 10))
   }
 
+  const toggleFavorite = (name: string) => {
+    const newFavorites = favorites.includes(name)
+      ? favorites.filter(fav => fav !== name)
+      : [...favorites, name];
+    setFavorites(newFavorites);
+    localStorage.setItem('favorites', JSON.stringify(newFavorites));
+  }
+
   return (
     <Container maxW="container.xl" p={8}>
       <VStack spacing={8}>
-        <Heading as="h1" size="2xl" textAlign="center" color="white">
-          Star Wars Characters
-        </Heading>
+      <Heading 
+        as="h1" 
+        size="2xl" 
+        textAlign="center" 
+        color="white" 
+        className="audiowide-font"
+      >
+        Star Wars Characters
+      </Heading>
         <SimpleGrid columns={[1, 2, 3, 4]} spacing={8} width="100%">
           {characters.map((character: any) => (
             <Center key={character.url}>
-              <CharacterCard name={character.name} url={character.url} />
+              <CharacterCard 
+                name={character.name} 
+                url={character.url} 
+                onToggleFavorite={toggleFavorite}
+              />
             </Center>
           ))}
         </SimpleGrid>
