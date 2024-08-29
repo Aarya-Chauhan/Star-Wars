@@ -17,6 +17,8 @@ export default function RootLayout({
   const [loading, setLoading] = useState(true)
   const router = useRouter()
   const [rayPosition, setRayPosition] = useState({ x: 0, y: 0, angle: 0 })
+  const [dotPosition, setDotPosition] = useState({ x: 0, y: 0 })
+  const [isHovering, setIsHovering] = useState(false)
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 3000)
@@ -31,28 +33,38 @@ export default function RootLayout({
     let lastX = 0
     let lastY = 0
 
-    const updateRayPosition = (e: MouseEvent) => {
+    const updateCursorPosition = (e: MouseEvent) => {
       const x = e.clientX
       const y = e.clientY
 
       const dx = x - lastX
       const dy = y - lastY
-      const angle = Math.atan2(dy, dx) * (180 / Math.PI) - 90 // Subtract 90 to make it point in the direction of movement
+      const angle = Math.atan2(dy, dx) * (180 / Math.PI) - 90
 
       setRayPosition({ x, y, angle })
+      setDotPosition({ x, y })
 
       lastX = x
       lastY = y
     }
 
-    window.addEventListener('mousemove', updateRayPosition)
+    const handleMouseOver = (e: MouseEvent) => {
+      if (e.target instanceof Element) {
+        const isInteractive = e.target.matches('button, a, input[type="submit"], [role="button"]')
+        setIsHovering(isInteractive)
+      }
+    }
+
+    window.addEventListener('mousemove', updateCursorPosition)
+    window.addEventListener('mouseover', handleMouseOver)
 
     return () => {
       clearTimeout(timer)
       router.events?.off('routeChangeStart', handleStart)
       router.events?.off('routeChangeComplete', handleComplete)
       router.events?.off('routeChangeError', handleComplete)
-      window.removeEventListener('mousemove', updateRayPosition)
+      window.removeEventListener('mousemove', updateCursorPosition)
+      window.removeEventListener('mouseover', handleMouseOver)
     }
   }, [router])
 
@@ -68,7 +80,15 @@ export default function RootLayout({
             style={{
               left: `${rayPosition.x}px`,
               top: `${rayPosition.y}px`,
-              transform: `translate(-50%, -10px) rotate(${rayPosition.angle}deg)`,  // Adjusted to center the ray on the cursor
+              transform: `translate(-50%, -10px) rotate(${rayPosition.angle}deg)`,
+            }}
+          />
+          <div
+            className={`cursor-dot ${isHovering ? 'hovering' : ''}`}
+            style={{
+              left: `${dotPosition.x}px`,
+              top: `${dotPosition.y}px`,
+              transform: `translate(-50%, -50%)`,
             }}
           />
           {loading ? (
