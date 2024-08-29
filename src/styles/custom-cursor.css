@@ -1,0 +1,17 @@
+body, html {
+    cursor: none;
+    height: 100%;
+    overflow: hidden;
+}
+
+.cursor-ray {
+    width: 6px;  /* Increased thickness */
+    height: 100px;  /* Increased length */
+    background: linear-gradient(to bottom, rgba(255, 215, 0, 1), transparent);  /* Changed to gold color */
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transform-origin: top;
+    box-shadow: 0 0 20px 5px rgba(255, 215, 0, 0.8);  /* Increased glow effect */
+    border-radius: 3px;  /* Slightly rounded edges */
+}
