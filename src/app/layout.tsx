@@ -8,6 +8,12 @@ import { Providers } from '../components/Providers'
 import { AppContainer } from '../components/AppContainer'
 import Preloader from '../components/Preloader'
 import Head from 'next/head'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: "Star Wars Fandom",
+  description: "A database of all Star Wars Characters.",
+};
 
 export default function RootLayout({
   children,
