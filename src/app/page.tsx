@@ -5,6 +5,7 @@ import { Box, Heading, SimpleGrid, Button, VStack, Center, Container } from '@ch
 import { getCharacters } from '../services/api'
 import CharacterCard from '../components/CharacterCard'
 
+
 export default function Home() {
   const [characters, setCharacters] = useState([])
   const [page, setPage] = useState(1)
@@ -39,9 +40,9 @@ export default function Home() {
         size="2xl" 
         textAlign="center" 
         color="white" 
-        className="audiowide-font"
+        className="main-heading"
       >
-        Star Wars Characters
+       STAR WARS 
       </Heading>
         <SimpleGrid columns={[1, 2, 3, 4]} spacing={8} width="100%">
           {characters.map((character: any) => (
@@ -49,7 +50,6 @@ export default function Home() {
               <CharacterCard 
                 name={character.name} 
                 url={character.url} 
-                onToggleFavorite={toggleFavorite}
               />
             </Center>
           ))}
@@ -58,15 +58,20 @@ export default function Home() {
           <Button 
             onClick={() => setPage(p => Math.max(1, p - 1))} 
             disabled={page === 1} 
-            mr={4}
-            colorScheme="blue"
+            mt={10}
+            mr={9}
+            colorScheme="none"
+            boxShadow="0 0 5px 3px rgb(255, 255, 255)"
           >
             Previous
           </Button>
           <Button 
             onClick={() => setPage(p => Math.min(totalPages, p + 1))} 
             disabled={page === totalPages}
-            colorScheme="blue"
+            colorScheme="none"
+            mt={10}
+            ml={9}
+            boxShadow="0 0 5px 3px rgb(255, 255, 255)"
           >
             Next
           </Button>

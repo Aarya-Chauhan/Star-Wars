@@ -1,10 +1,13 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
+
+
 *{
   background-image: url('../../public/starry-night.jpeg');
   background-size: 100%;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
 
-.audiowide-font {
+.main-heading {
   font-family: 'Audiowide', cursive !important;
 }

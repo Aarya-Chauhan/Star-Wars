@@ -45,25 +45,27 @@ const CharacterCard: React.FC<CharacterCardProps> = ({ name, url }) => {
       borderWidth="1px" 
       borderRadius="lg" 
       overflow="hidden" 
-      boxShadow="md" 
+      boxShadow="0 0 10px 3px rgb(255, 255, 255)" 
       width="100%" 
       maxWidth="300px"
-      height="400px"
+      height="300px"
+      marginTop={30}
       paddingTop={5}
+      paddingBottom={3}
       display="flex"
       flexDirection="column"
       transition="transform 0.3s"
       _hover={{ transform: 'scale(1.05)' }}
       bg="rgba(0, 0, 0, 0.7)"
     >
-      <Box height="250px" width="100%" position="relative">
+      <Box height="150px" width="100%" position="relative">
         {isLoading ? (
           <Center height="100%">
             <Spinner
               thickness="4px"
               speed="0.65s"
               emptyColor="gray.200"
-              color="blue.500"
+              color="rgb(136, 194, 248).500"
               size="xl"
             />
           </Center>
@@ -79,13 +81,13 @@ const CharacterCard: React.FC<CharacterCardProps> = ({ name, url }) => {
       </Box>
       <VStack spacing={4} p={4} flex={1} justifyContent="space-between">
         <Text fontSize="xl" fontWeight="bold" textAlign="center" noOfLines={2} color="white">{name}</Text>
-        <HStack width="100%" spacing={7} justifyContent="space-between">
+        <HStack width="80%" spacing={2} justifyContent="space-between">
           <Link href={`/character/${id}`} style={{ flexGrow: 1 }}>
-            <Button colorScheme="blue" width="100%">View Details</Button>
+            <Button colorScheme="none" boxShadow="0 0 5px 3px rgb(136, 194, 248)" width="80%">View Details</Button>
           </Link>
           <Icon
             as={isFavorite ? FaHeart : FaRegHeart}
-            color={isFavorite ? "red.500" : "gray.400"}
+            color={isFavorite ? "red.500" : "red.400"}
             boxSize={9}
             cursor="pointer"
             onClick={toggleFavorite}
