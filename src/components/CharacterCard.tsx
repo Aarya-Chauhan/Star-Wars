@@ -1,3 +1,5 @@
+'use client'
+
 import { Box, Text, Button, Image, VStack, Icon, HStack, Spinner, Center } from '@chakra-ui/react'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
@@ -82,7 +84,7 @@ const CharacterCard: React.FC<CharacterCardProps> = ({ name, url }) => {
       <VStack spacing={4} p={4} flex={1} justifyContent="space-between">
         <Text fontSize="xl" fontWeight="bold" textAlign="center" noOfLines={2} color="white">{name}</Text>
         <HStack width="80%" spacing={2} justifyContent="space-between">
-          <Link href={`/character/${id}`} style={{ flexGrow: 1 }}>
+          <Link href={`/characters/${id}`} style={{ flexGrow: 1 }}>
             <Button colorScheme="none" boxShadow="0 0 5px 3px rgb(136, 194, 248)" width="80%">View Details</Button>
           </Link>
           <Icon

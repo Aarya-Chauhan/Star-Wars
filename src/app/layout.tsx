@@ -26,8 +26,12 @@ export default function RootLayout({
     const handleStart = () => setLoading(true)
     const handleComplete = () => setLoading(false)
 
+
+    //@ts-ignore
     router.events?.on('routeChangeStart', handleStart)
+    //@ts-ignore
     router.events?.on('routeChangeComplete', handleComplete)
+    //@ts-ignore
     router.events?.on('routeChangeError', handleComplete)
 
     let lastX = 0
@@ -60,8 +64,11 @@ export default function RootLayout({
 
     return () => {
       clearTimeout(timer)
+      //@ts-ignore
       router.events?.off('routeChangeStart', handleStart)
+      //@ts-ignore
       router.events?.off('routeChangeComplete', handleComplete)
+      //@ts-ignore
       router.events?.off('routeChangeError', handleComplete)
       window.removeEventListener('mousemove', updateCursorPosition)
       window.removeEventListener('mouseover', handleMouseOver)

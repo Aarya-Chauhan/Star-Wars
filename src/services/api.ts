@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { clearScreenDown } from 'readline'
 
 const api = axios.create({
   baseURL: 'https://swapi.py4e.com/api',
@@ -7,6 +8,8 @@ const api = axios.create({
 const visualGuideApi = axios.create({
   baseURL: 'https://akabab.github.io/starwars-api/api',
 })
+
+
 
 export const getCharacters = async (page = 1) => {
   try {
@@ -38,5 +41,12 @@ export const getCharacterImage = async (name: string) => {
     return null
   }
 }
+
+
+export const getMovieDetails = async (url: string) => {
+  const response = await axios.get(url)
+  return response.data
+}
+
 
 export default api
