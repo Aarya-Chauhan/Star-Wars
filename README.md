@@ -12,9 +12,9 @@ A Startwar Fandom Webapp developed using nextjs and ChakraUI library.
 
 # Screenshots
 <div>
- <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEisStofYgWU0-yNI0dz5j_vnjnlc2XcTK9zIA-0NsvHjQ-sJLlJmW2pcU5Y-KdHakHih0APpEvaHSQZ8uG1FCio59IixAlWSIzzXTGU-bOspGYrRfP1Eq4WrzuOjmWV7kXWrnMqjzXrMQjcfPBlxmBL-e7cLzmcNkXaxPTXg3GKADvRq90SwVdJA6Rb2Po/w640-h285/Screenshot%20(72).png" width="500px">
- <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhB5XCKqf9gPPQdIGA5-3sx33ncEJtEZI5Dml-5GOBw5MEYqe7EraHlRD7qdtiQETXdbBx7fdi_9bOt8MzppHMBlc16ddLZulnPsLyUybVrazE0VR1Ks-zxb76D2A6UNGXBbWxP730eWZ6Ejlo-3IAUvmdJNXOtS0Z1OGgidgtcITYps309rxTKM9OkGoI/w640-h288/Screenshot%20(73).png" width="500px">
-      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg5jORB0ZXLmArv0KD8C6rCi9EYl1pG0VxWXV46hrrb0NPCpVBU39cqyKbUzDk0XxlYFJlG80sYSna4LpaOC0n-JjDlyFGxjiEbqpnMq3_XkooUf0k2eTaoH9oMqch3jRISHaAhJVRajDFsTMjn49hyzkXjqkkhhIX-Fo9qnUZ042H53pTl2dMReUM39ok/w640-h360/Screenshot%20(71).png"width="1005px">
+ <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEisStofYgWU0-yNI0dz5j_vnjnlc2XcTK9zIA-0NsvHjQ-sJLlJmW2pcU5Y-KdHakHih0APpEvaHSQZ8uG1FCio59IixAlWSIzzXTGU-bOspGYrRfP1Eq4WrzuOjmWV7kXWrnMqjzXrMQjcfPBlxmBL-e7cLzmcNkXaxPTXg3GKADvRq90SwVdJA6Rb2Po/w640-h285/Screenshot%20(72).png" width="300px">
+ <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhB5XCKqf9gPPQdIGA5-3sx33ncEJtEZI5Dml-5GOBw5MEYqe7EraHlRD7qdtiQETXdbBx7fdi_9bOt8MzppHMBlc16ddLZulnPsLyUybVrazE0VR1Ks-zxb76D2A6UNGXBbWxP730eWZ6Ejlo-3IAUvmdJNXOtS0Z1OGgidgtcITYps309rxTKM9OkGoI/w640-h288/Screenshot%20(73).png" width="300px">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg5jORB0ZXLmArv0KD8C6rCi9EYl1pG0VxWXV46hrrb0NPCpVBU39cqyKbUzDk0XxlYFJlG80sYSna4LpaOC0n-JjDlyFGxjiEbqpnMq3_XkooUf0k2eTaoH9oMqch3jRISHaAhJVRajDFsTMjn49hyzkXjqkkhhIX-Fo9qnUZ042H53pTl2dMReUM39ok/w640-h360/Screenshot%20(71).png"width="605px">
  </div>
  
 # Tech Used
